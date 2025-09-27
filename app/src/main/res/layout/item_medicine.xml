@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingEnd="8dp"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/tvMedName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine Name"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvMedDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Morning | Before Meal | 1 tablet"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvMedStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp">
+
+            <Button
+                android:id="@+id/btnMedEdit"
+                android:backgroundTint="@color/orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"/>
+
+            <Button
+                android:id="@+id/btnMedDelete"
+                android:backgroundTint="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.AddMedActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/labelAddMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Medication"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/medName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Medication Name"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/labelAddMed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/medDosage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Dosage (e.g., 500mg)"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/medName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/medPillsPerDose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Pills per dose (e.g., 1)"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/medDosage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Time:"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/medPillsPerDose"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/timeCheckboxes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/textView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp">
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Morning" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noon"
+            android:layout_marginStart="12dp"/>
+
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Night"
+            android:layout_marginStart="12dp"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rgMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/timeCheckboxes"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp">
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Before Meal" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="After Meal"
+            android:layout_marginStart="12dp"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/medStock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Initial stock (e.g., 10)"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/rgMeal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/addMedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Medication"
+        android:backgroundTint="@color/green"
+        app:layout_constraintTop_toBottomOf="@id/medStock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/discardBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Discard"
+        android:backgroundTint="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/addMedButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

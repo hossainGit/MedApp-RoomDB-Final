@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">myapplication</string>
+    <!-- Existing strings -->
+    <string name="no_upcoming_medicines">No upcoming medicines</string>
+    <string name="no_cabinet_items">No cabinet items</string>
+    <string name="no_reminders_found">No reminders found</string>
+    <string name="no_morning_medicines">No morning medicines</string>
+    <string name="noon_none">No noon medicines</string>
+    <string name="no_night_medicines">No night medicines</string>
+    <string name="taken">Taken</string>
+    <string name="missed">Missed</string>
+    <string name="mark_taken">Mark %1$s as taken?</string>
+    <string name="mark_missed">Mark %1$s as missed?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete">Delete</string>
+    <string name="delete_reminder">Delete reminder for %1$s?</string>
+    <string name="med_details">%1$s - %2$s | %3$d tab | %4$s</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Med_app</string>
 </resources>
