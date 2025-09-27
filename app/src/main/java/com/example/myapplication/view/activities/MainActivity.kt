@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
         btnDashboard = findViewById(R.id.button)
         btnAdd = findViewById(R.id.button2)
         btnCabinet = findViewById(R.id.button3)
@@ -66,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun resetButtonColors() {
         val defaultColor = ContextCompat.getColor(this, R.color.ocean_blue)
         btnDashboard.setColorFilter(defaultColor)
@@ -84,3 +87,4 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }
+

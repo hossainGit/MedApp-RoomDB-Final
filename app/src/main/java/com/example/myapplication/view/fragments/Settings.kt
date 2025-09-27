@@ -1,60 +1,68 @@
 package com.example.myapplication.view.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Switch
+import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Settings.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Settings : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
-    }
+    private lateinit var etName: EditText
+    private lateinit var etAge: EditText
+    private lateinit var etEmail: EditText
+    private lateinit var swRem: Switch
+    private lateinit var prefs: SharedPreferences
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Settings.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Settings().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        private const val PREFS_NAME = "myData"
+        private const val KEY_NAME = "profile_name"
+        private const val KEY_AGE = "profile_age"
+        private const val KEY_EMAIL = "profile_email"
+        private const val KEY_REM = "profile_reminder_enabled"
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.fragment_settings, container, false)
+
+        prefs = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        etName = v.findViewById(R.id.editTextText)
+        etAge = v.findViewById(R.id.editTextText2)
+        etEmail = v.findViewById(R.id.editTextTextEmailAddress)
+        swRem = v.findViewById(R.id.switch1)
+
+        return v
+    }
+
+    override fun onResume() {
+        super.onResume()
+        readSettings()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveSettings()
+    }
+
+    private fun readSettings() {
+        etName.setText(prefs.getString(KEY_NAME, ""))
+        etAge.setText(prefs.getString(KEY_AGE, ""))
+        etEmail.setText(prefs.getString(KEY_EMAIL, ""))
+        swRem.isChecked = prefs.getBoolean(KEY_REM, true)
+    }
+
+    private fun saveSettings() {
+        val editor = prefs.edit()
+        editor.putString(KEY_NAME, etName.text.toString().trim())
+        editor.putString(KEY_AGE, etAge.text.toString().trim())
+        editor.putString(KEY_EMAIL, etEmail.text.toString().trim())
+        editor.putBoolean(KEY_REM, swRem.isChecked)
+        editor.apply()
     }
 }
