@@ -18,8 +18,12 @@ import com.example.myapplication.model.Inventory
 import com.example.myapplication.room.AppDatabase
 import com.example.myapplication.repository.InventoryRepository
 import com.example.myapplication.repository.MedicineRepository
+import com.example.myapplication.repository.MedicineScheduleRepository
+import com.example.myapplication.utils.TimeShiftManager
 import com.example.myapplication.viewmodel.InventoryViewModel
 import com.example.myapplication.viewmodel.InventoryViewModelFactory
+import com.example.myapplication.viewmodel.MedicineScheduleViewModel
+import com.example.myapplication.viewmodel.MedicineScheduleViewModelFactory
 import com.example.myapplication.viewmodel.MedicineViewModel
 import com.example.myapplication.viewmodel.MedicineViewModelFactory
 import org.json.JSONArray
@@ -39,6 +43,8 @@ class AddMedActivity : AppCompatActivity() {
     private lateinit var btnDiscard: Button
 
     private var editingId: String? = null
+
+
     private lateinit var prefs: SharedPreferences
 
     private val medicineViewModel: MedicineViewModel by viewModels {
@@ -51,6 +57,13 @@ class AddMedActivity : AppCompatActivity() {
         val db = AppDatabase.getInstance(this)
         val repo = InventoryRepository(db.inventoryDao())
         InventoryViewModelFactory(repo)
+    }
+
+    private val scheduleViewModel: MedicineScheduleViewModel by viewModels {
+        val db = AppDatabase.getInstance(this)
+        val scheduleRepo = MedicineScheduleRepository(db.medicineScheduleDao())
+        val inventoryRepo = InventoryRepository(db.inventoryDao())
+        MedicineScheduleViewModelFactory(scheduleRepo, inventoryRepo)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -171,11 +184,14 @@ class AddMedActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun onSave() {
         val name = medName.text.toString().trim()
         val dosage = medDosage.text.toString().trim()
         val pillsPerDose = medPillsPerDose.text.toString().toIntOrNull() ?: 1
         val stock = medStock.text.toString().toIntOrNull() ?: 0
+
 
         // Validate inputs
         if (name.isEmpty() || dosage.isEmpty()) {
@@ -196,6 +212,7 @@ class AddMedActivity : AppCompatActivity() {
         val mealTiming = if (rbBefore.isChecked) "Before Meal" else "After Meal"
         val id = editingId ?: System.currentTimeMillis().toString()
 
+
         val medicine = Medicine(
             id = id,
             name = name,
@@ -207,6 +224,32 @@ class AddMedActivity : AppCompatActivity() {
             inventoryId = if (stock > 0) "inv_$id" else null,
             lastModified = System.currentTimeMillis()
         )
+
+        // Create schedules for each time
+        val today = TimeShiftManager.getTodayDate()
+        times.forEach { time ->
+            val shift = when (time.uppercase()) {
+                "MORNING" -> TimeShiftManager.SHIFT_MORNING
+                "NOON" -> TimeShiftManager.SHIFT_NOON
+                "NIGHT" -> TimeShiftManager.SHIFT_NIGHT
+                else -> null
+            }
+            shift?.let {
+                scheduleViewModel.createSchedule(id, today, it)
+            }
+        }
+
+        if (stock > 0) {
+            val inventory = Inventory(
+                id = "inv_$id",
+                name = name,
+                unit = "tab",
+                stock = stock,
+                lastModified = System.currentTimeMillis()
+            )
+            inventoryViewModel.insertInventory(inventory)
+        }
+
 
         AlertDialog.Builder(this)
             .setTitle("Confirm")
@@ -227,29 +270,21 @@ class AddMedActivity : AppCompatActivity() {
                     }
                 } else {
                     medicineViewModel.insertMedicine(medicine)
-                    // Create inventory item if stock is provided
-                    if (stock > 0) {
-                        val inventory = Inventory(
-                            id = "inv_$id",
-                            name = name,
-                            unit = "tab",
-                            stock = stock,
-                            lastModified = System.currentTimeMillis()
-                        )
-                        inventoryViewModel.insertInventory(inventory)
-                    }
-                    // Clear draft after successful save
-                    prefs.edit().remove("draft_med_name")
-                        .remove("draft_med_dosage")
-                        .remove("draft_med_pills")
-                        .remove("draft_med_stock")
-                        .remove("draft_med_times")
-                        .apply()
                 }
+                // Clear draft after successful save
+                prefs.edit().remove("draft_med_name")
+                    .remove("draft_med_dosage")
+                    .remove("draft_med_pills")
+                    .remove("draft_med_stock")
+                    .remove("draft_med_times")
+                    .apply()
+
                 Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .setNegativeButton("No", null)
             .show()
     }
+
+
 }

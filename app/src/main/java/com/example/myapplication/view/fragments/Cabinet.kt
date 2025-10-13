@@ -1,5 +1,6 @@
 package com.example.myapplication.view.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,8 +76,15 @@ class Cabinet : Fragment() {
                 tvStock.text = item.stock.toString()
                 tvAvail.text = when {
                     item.stock <= 0 -> "Empty"
-                    item.stock <= 3 -> "Running Low"
+                    item.stock <= 5 -> "Running Low"
                     else -> "Available"
+                }
+                if (item.stock <= 0) {
+                    tvAvail.setTextColor(Color.RED)
+                } else if (item.stock <= 5) {
+                    tvAvail.setTextColor(Color.parseColor("#FFA500")) // Orange color
+                } else {
+                    tvAvail.setTextColor(Color.GREEN)
                 }
 
                 btnInc.setOnClickListener {

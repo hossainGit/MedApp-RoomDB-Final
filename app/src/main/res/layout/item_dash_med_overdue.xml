@@ -6,14 +6,16 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    android:backgroundTint="@color/red">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:gravity="center"
+        >
 
         <LinearLayout
             android:layout_width="0dp"
@@ -26,14 +28,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Paracetamol"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tvDashMedDetails"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:maxWidth="250dp"
-                android:text="Morning - Before Meal | 1 tab" />
+                android:layout_height="wrap_content"
+                android:text="Morning - Before Meal | 1 tab"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
         <LinearLayout
@@ -42,23 +46,24 @@
             android:orientation="vertical">
 
             <Button
+                android:elevation="8dp"
                 android:id="@+id/btnDashTaken"
+                android:backgroundTint="@color/light_green"
+                android:textColor="@color/green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/light_green"
-                android:elevation="8dp"
-                android:text="Taken"
-                android:textColor="@color/green" />
+                android:text="Take Now"/>
 
             <Button
                 android:id="@+id/btnDashMissed"
+                android:elevation="8dp"
+                android:backgroundTint="@color/rose_quartz"
+                android:textColor="@color/red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:backgroundTint="@color/rose_quartz"
-                android:elevation="8dp"
                 android:text="Missed"
-                android:textColor="@color/red" />
+                android:layout_marginTop="6dp"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

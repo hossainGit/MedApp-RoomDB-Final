@@ -42,22 +42,24 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // Room
     implementation("androidx.room:room-runtime:2.6.0")
     kapt("androidx.room:room-compiler:2.6.0")
     implementation("androidx.room:room-ktx:2.6.0")
 
-    // Lifecycle & ViewModel
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
-    // Coroutines
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    // Fragment KTX for viewModels()
+
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
-    // Activity KTX for by viewModels()
+
     implementation("androidx.activity:activity-ktx:1.8.1")
+
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.core:core-ktx:1.12.0")
 }

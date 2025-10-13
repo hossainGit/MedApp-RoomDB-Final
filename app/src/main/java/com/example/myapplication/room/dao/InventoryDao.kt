@@ -30,4 +30,5 @@ interface InventoryDao {
 
     @Query("UPDATE inventory SET stock = stock + :delta, lastModified = :ts WHERE id = :id")
     suspend fun changeStock(id: String, delta: Int, ts: Long): Int
+
 }

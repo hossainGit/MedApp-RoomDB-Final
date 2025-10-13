@@ -12,4 +12,5 @@ class InventoryRepository(private val dao: InventoryDao) {
     suspend fun updateInventory(i: Inventory) = dao.update(i)
     suspend fun deleteInventory(i: Inventory) = dao.delete(i)
     suspend fun changeStock(id: String, delta: Int) = dao.changeStock(id, delta, System.currentTimeMillis())
+
 }

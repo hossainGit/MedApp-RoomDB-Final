@@ -18,9 +18,9 @@
 
     <!-- Additional Aesthetic Colors -->
     <color name="sky_blue">#A0DFF7</color>
-    <color name="soft_pink">#FCD4DE</color>
+    <color name="soft_pink">#FFE3E3</color>
     <color name="mint_green">#78CC7C</color>
-    <color name="light_green">#D1FBD1</color>
+    <color name="light_green">#BEC6FFBC</color>
     <color name="lavender">#E1D5F0</color>
     <color name="peach">#FFE0B2</color>
     <color name="light_gold">#FFF8E1</color>

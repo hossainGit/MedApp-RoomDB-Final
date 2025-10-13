@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.Dashboard"
-    android:padding="12dp">
+    android:padding="12dp"
+    tools:context=".view.fragments.Dashboard">
 
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="16dp"
         android:text="Welcome Back!"
         android:textSize="22sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvNextMedLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="Your next medications:"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="12dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
     <ScrollView
         android:id="@+id/scrollViewMedList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvNextMedLabel"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="371dp"
+        android:layout_height="396dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/pillCabinetLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/pillCabinetLabel"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNextMedLabel">
 
         <LinearLayout
             android:id="@+id/medListContainer"
@@ -50,20 +54,26 @@
         android:id="@+id/pillCabinetLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp"
         android:text="Cabinet:"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewCabinet"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollViewCabinet"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="60dp"
+        android:fillViewport="true"
+        android:minHeight="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fBtn"
-        android:layout_marginTop="6dp"
-        android:fillViewport="true">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -81,17 +91,10 @@
         android:id="@+id/fBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/bottomSpace"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/plus_box_multiple"/>
-
-    <!-- just a spacer to keep FAB above bottom nav -->
-    <View
-        android:id="@+id/bottomSpace"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/plus_box_multiple"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

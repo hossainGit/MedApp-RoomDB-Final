@@ -37,9 +37,19 @@
                 android:id="@+id/tvMedDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Morning | Before Meal | 1 tablet"
+                android:text="1 tablet"
                 android:textSize="14sp"
                 android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvMedDetails2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Before Meal"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
+
+
 
             <TextView
                 android:id="@+id/tvMedStatus"
